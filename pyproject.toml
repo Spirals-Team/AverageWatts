@@ -1,0 +1,8 @@
+[tool.pytest.ini_options]
+log_cli = true
+addopts = ["--import-mode=importlib"]
+pythonpath = ["src"]
+testpaths = ["tests"]
+[tool.hatch.version]
+source = "code"
+path = "src/averagewatts/__init__.py"
