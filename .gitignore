@@ -171,3 +171,4 @@ cython_debug/
 .pypirc
 
 *.csv
+power_reports.d/
