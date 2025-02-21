@@ -5,7 +5,7 @@ from collections import OrderedDict
 import pytest
 from powerapi.report import HWPCReport
 
-from naive.handler import HWPCReportHandler
+from averagewatts.handler import HWPCReportHandler
 
 NUMBER_OF_GENERATED_CORE_REPORTS = 10
 
