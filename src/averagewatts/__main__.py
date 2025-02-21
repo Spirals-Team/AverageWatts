@@ -33,9 +33,6 @@ def setup_dispatcher(config, route_table, report_filter, pushers):
 
 
 def run_naive(config) -> None:
-    LOGGING_LEVEL = logging.DEBUG
-    LOGGING_FORMAT = "%(asctime)s - %(process)d - %(processName)s - %(name)s - %(levelname)s - %(message)s"
-    logging.basicConfig(level=LOGGING_LEVEL, format=LOGGING_FORMAT)
     logging.info(
         "Naive version %s based on PowerAPI version %s",
         naive_version,
@@ -87,6 +84,10 @@ if __name__ == "__main__":
     except Exception as exn:
         logging.error("File does not exist: %s", exn)
         sys.exit(1)
+
+    LOGGING_LEVEL = logging.DEBUG if args["verbose"] else logging.INFO
+    LOGGING_FORMAT = "%(asctime)s - %(process)d - %(processName)s - %(name)s - %(levelname)s - %(message)s"
+    logging.basicConfig(level=LOGGING_LEVEL, format=LOGGING_FORMAT)
 
     run_naive(args)
     sys.exit(0)
