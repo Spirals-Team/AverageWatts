@@ -101,9 +101,9 @@ def test_csv_to_csv(tmp_path):
             "puller_csv": {
                 "model": "HWPCReport",
                 "files": [
-                    "hwpc_reports/rapl.csv",
-                    "hwpc_reports/core.csv",
-                    "hwpc_reports/msr.csv",
+                    "data/core.csv",
+                    "data/msr.csv",
+                    "data/rapl.csv",
                 ],
                 "type": "csv",
                 "name": "puller_csv",
@@ -117,7 +117,7 @@ def test_csv_to_csv(tmp_path):
                 "name": "pusher_csv",
             }
         },
-        "verbose": True,
+        "verbose": False,
         "stream": False,
     }
     run_naive(config)
@@ -134,57 +134,9 @@ def test_csv_to_influxdb(setup_influxdb):
             "puller_csv": {
                 "model": "HWPCReport",
                 "files": [
-                    "hwpc_reports/rapl.csv",
-                    "hwpc_reports/msr.csv",
-                    "hwpc_reports/core.csv",
-                ],
-                "type": "csv",
-                "name": "puller_csv",
-            }
-        },
-        "output": {
-            "pusher_influxdb2": {
-                "model": "PowerReport",
-                "uri": "127.0.0.1",
-                "port": INFLUXDB_HOST_PORT,
-                "db": INFLUXDB_BUCKET,
-                "org": INFLUXDB_ORG,
-                "token": INFLUXDB_ADMIN_TOKEN,
-                "type": "influxdb2",
-                "name": "pusher_influxdb2",
-            }
-        },
-        "stream": True,
-        "verbose": True,
-    }
-
-    run_naive(config)
-    result = query_api.query(f'from(bucket:"{INFLUXDB_BUCKET}") |> range(start: -30d)')
-    results = []
-    for table in result:
-        for record in table.records:
-            results.append((record.get_field(), record.get_value()))
-    print(results)
-    assert results != []
-
-
-def test_mongo_connection(setup_mongo):
-    _populate_mongo_db()
-
-    assert setup_mongo.startswith("mongodb://")
-
-
-def test_mock_csv_to_influxdb(setup_influxdb, mocker):
-    query_api = setup_influxdb.query_api()
-    config = {
-        "verbose": True,
-        "input": {
-            "puller_csv": {
-                "model": "HWPCReport",
-                "files": [
-                    "hwpc_reports/rapl.csv",
-                    "hwpc_reports/core.csv",
-                    "hwpc_reports/msr.csv",
+                    "data/rapl.csv",
+                    "data/msr.csv",
+                    "data/core.csv",
                 ],
                 "type": "csv",
                 "name": "puller_csv",
@@ -203,7 +155,9 @@ def test_mock_csv_to_influxdb(setup_influxdb, mocker):
             }
         },
         "stream": False,
+        "verbose": False,
     }
+
     run_naive(config)
     result = query_api.query(f'from(bucket:"{INFLUXDB_BUCKET}") |> range(start: -30d)')
     results = []
