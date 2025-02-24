@@ -53,16 +53,18 @@ class HWPCReportHandler(Handler):
 
         global_report: HWPCReport = hwpc_reports.pop("all", None)
         if not global_report:
-            logging.error("Failed to process tick %s: missing global report", timestamp)
+            logging.warning(
+                "Failed to process tick %s: missing global report", timestamp
+            )
             return []
 
         if "rapl" not in global_report.groups.keys():
-            logging.error("Failed to process tick %s: missing rapl report", timestamp)
+            logging.warning("Failed to process tick %s: missing rapl report", timestamp)
             return []
 
         if not hwpc_reports:
             # Pre-processor can drop reports
-            logging.error("No available reports !")
+            logging.warning("No available reports !")
             return []
 
         logging.debug("processing tick %s", timestamp)
