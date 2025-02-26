@@ -1,8 +1,8 @@
 # AverageWatts
 
 AverageWatts is a formula for a software-defined power meter based on the [`PowerAPI framework`](https://github.com/powerapi-ng/powerapi).
-This project is the implementation of a simple power meter that estimate the power consumption following this method :
-$\mathcal{P} = \frac{Number  of  processus}{\mathcal{P}_{rapl}}$
+This project is the implementation of a simple power meter that estimate the power consumption following this method :  
+$\mathcal{P} = \frac{n}{\mathcal{P}_{rapl}}$ where n is the total number of active processus.
 
 ## Installation
 
