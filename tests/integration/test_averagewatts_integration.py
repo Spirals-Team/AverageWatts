@@ -26,12 +26,15 @@ MONGODB_COLLECTION = "sensor"
 MONGODB_TYPE = "mongodb"
 
 CSV_TYPE = "csv"
-CSV_RAPL_FILE_PATH = "test/integration/data/rapl.csv"
-CSV_MSR_FILE_PATH = "test/integration/data/msr.csv"
-CSV_CORE_FILE_PATH = "test/integration/data/core.csv"
+CSV_RAPL_FILE_PATH = "tests/integration/data/rapl.csv"
+CSV_MSR_FILE_PATH = "tests/integration/data/msr.csv"
+CSV_CORE_FILE_PATH = "tests/integration/data/core.csv"
 
 INPUT_REPORT_MODEL = "HWPCReport"
 OUTPUT_REPORT_MODEL = "PowerReport"
+
+VERBOSE = False
+STREAM = False
 
 mongo = MongoDbContainer("mongo:7.0.7")
 influxdb = InfluxDb2Container(
@@ -144,8 +147,8 @@ def test_csv_to_csv(tmp_path):
                 "name": "pusher_csv",
             }
         },
-        "verbose": True,
-        "stream": False,
+        "verbose": VERBOSE,
+        "stream": STREAM,
     }
 
     run_naive(config)
@@ -183,8 +186,8 @@ def test_csv_to_influxdb(setup_influxdb):
                 "name": "pusher_influxdb2",
             }
         },
-        "stream": False,
-        "verbose": True,
+        "stream": STREAM,
+        "verbose": VERBOSE,
     }
 
     run_naive(config)
@@ -223,8 +226,8 @@ def test_mongo_to_influxdb(setup_influxdb, setup_mongo):
                 "name": "pusher_influxdb2",
             }
         },
-        "stream": False,
-        "verbose": False,
+        "stream": STREAM,
+        "verbose": VERBOSE,
     }
 
     run_naive(config)
@@ -261,8 +264,8 @@ def test_mongo_to_csv(tmp_path, setup_mongo):
                 "name": "pusher_csv",
             }
         },
-        "verbose": False,
-        "stream": False,
+        "verbose": VERBOSE,
+        "stream": STREAM,
     }
 
     run_naive(config)
