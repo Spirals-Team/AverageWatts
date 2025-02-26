@@ -94,7 +94,7 @@ def test_missing_core_reports(processed_reports_without_core_reports, caplog):
     assert 0 == len(processed_reports)
 
     for record in caplog.records:
-        assert record.levelname == "ERROR"
+        assert record.levelname == "WARNING"
         assert "No available reports !" in record.message
 
 
@@ -114,5 +114,5 @@ def test_missing_all_reports(processed_reports_without_all_reports, caplog):
     assert 0 == len(processed_reports)
 
     for record in caplog.records:
-        assert record.levelname == "ERROR"
+        assert record.levelname == "WARNING"
         assert "Failed to process tick" in record.message
