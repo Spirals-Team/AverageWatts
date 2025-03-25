@@ -5,7 +5,6 @@ from collections import OrderedDict
 
 from powerapi import __version__ as powerapi_version
 from powerapi.backend_supervisor import BackendSupervisor
-from powerapi.cli import ConfigValidator
 from powerapi.cli.common_cli_parsing_manager import CommonCLIParsingManager
 from powerapi.cli.generator import (
     PullerGenerator,
@@ -21,6 +20,7 @@ from powerapi.report import HWPCReport
 
 from averagewatts import __version__ as naive_version
 from averagewatts.actor.factory import AverageWattsFormulaActorFactory
+from averagewatts.cli import ConfigValidator
 
 
 def setup_dispatcher(config, route_table, report_filter, pushers):

@@ -1,5 +1,3 @@
-from .config_validator import NaiveConfigValidator
+from .config_validator import AverageWattsConfigValidator
 
-__all__ = [
-    'AverageWattsConfigValidator'
-]
+__all__ = ["AverageWattsConfigValidator"]
