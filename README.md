@@ -1,7 +1,7 @@
 # AverageWatts
 
 AverageWatts is a formula for a software-defined power meter based on the [`PowerAPI framework`](https://github.com/powerapi-ng/powerapi).
-This project is the implementation of a simple power meter that estimate the power consumption following this method :  
+This project is the implementation of a simple power meter that estimate the power consumption following this method :
 $$\mathcal{P} = \frac{\mathcal{P}_{rapl}}{n}$$ where `n` is the total number of active processus.
 
 ## Installation
@@ -17,6 +17,6 @@ Input / Output are the one available from [`PowerAPI framework`](https://github.
 For example, using csv as a source and csv as a destination:
 ```sh
 PYTHONPATH=src python -m averagewatts \
-    --input csv --model HWPCReport --name puller_csv --files "../tests/integration/data/rapl.csv,../tests/integration/data/msr.csv,../tests/integrations/data/core.csv" \
+    --input csv --model HWPCReport --name puller_csv --files "./tests/integration/data/rapl.csv,./tests/integration/data/msr.csv,./tests/integration/data/core.csv" \
     --output csv --directory "../power_reports.d"
 ```

@@ -20,7 +20,7 @@ from powerapi.report import HWPCReport
 
 from averagewatts import __version__ as naive_version
 from averagewatts.actor.factory import AverageWattsFormulaActorFactory
-from averagewatts.cli import ConfigValidator
+from averagewatts.cli import AverageWattsConfigValidator
 
 
 def setup_dispatcher(config, route_table, report_filter, pushers):
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     args = args_parser.parse()
 
     try:
-        ConfigValidator().validate(args)
+        AverageWattsConfigValidator().validate(args)
     except Exception as exn:
         logging.error("File does not exist: %s", exn)
         sys.exit(1)
